@@ -1,3 +1,0 @@
-/home/ubuntu/Documents/itlit/opencv_tracker/CMakeFiles/rebuild_cache.dir
-/home/ubuntu/Documents/itlit/opencv_tracker/CMakeFiles/edit_cache.dir
-/home/ubuntu/Documents/itlit/opencv_tracker/CMakeFiles/its_lit.dir
