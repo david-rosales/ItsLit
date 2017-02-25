@@ -79,7 +79,7 @@ EXTERNAL_LIBS += $(shell pkg-config --libs nvxio)
 
 
 INCLUDES := $(EXTERNAL_CFLAGS)
-INCLUDES += 
+INCLUDES +=
 
 # to ensure correct linkage with NVIDIA GLES if MESA version is installed
 LIBRARIES += -L"$(PKG_CONFIG_SYSROOT_DIR)/usr/lib"
@@ -89,7 +89,7 @@ ifneq ($(VIBRANTE_TOOLCHAIN_SYSROOT),)
 endif
 
 LIBRARIES += $(EXTERNAL_LIBS)
-LIBRARIES += 
+LIBRARIES +=
 
 LDFLAGS += -Wl,--allow-shlib-undefined -pthread
 
@@ -113,7 +113,7 @@ CPP_FILES := $(wildcard *.cpp)
 OBJ_DIR := obj/$(TARGET)
 OBJ_FILES_CPP := $(addprefix $(OBJ_DIR)/,$(notdir $(CPP_FILES:.cpp=.o)))
 
-OUTPUT_DIR := ../../bin/$(OS_ARCH)/$(OSLOWER)/$(TARGET)$(if $(abi),/$(abi))
+OUTPUT_DIR := ./bin/$(OS_ARCH)/$(OSLOWER)/$(TARGET)$(if $(abi),/$(abi))
 
 ################################################################################
 
