@@ -81,7 +81,7 @@ int main( int argc, char** argv )
 	  bestPoints.push_back(keypoints[0]);
 	}
 	Mat im_with_keypoints;
-        drawKeypoints(src, bestPoints, im_with_keypoints, Scalar(0,0,255), DrawMatchesFlags::DRAW_RICH_KEYPOINTS );
+        drawKeypoints(bw, bestPoints, im_with_keypoints, Scalar(0,0,255), DrawMatchesFlags::DRAW_RICH_KEYPOINTS );
         imshow("keypoints", im_with_keypoints);
 
         waitKey(1);
