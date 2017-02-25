@@ -34,7 +34,7 @@ KeyPoint* maxSizePoint(std::vector<KeyPoint> keypoints, KeyPoint * oldMax)
 double weight_func(KeyPoint * keypoint, KeyPoint * oldMax) 
 {
   double distance_weight = 0.40;
-  double distance_numerator = 500000;
+  double distance_numerator = 200000;
   double size_weight = 0.75;
 
   Point2f p1 = oldMax->pt;
