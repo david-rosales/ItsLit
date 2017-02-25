@@ -23,13 +23,13 @@ int main( int argc, char** argv )
         //src = imread(argv[1]);
 
         namedWindow( window_name1, WINDOW_AUTOSIZE );
-        imshow("Unprocessed Image",src);
+        //imshow("Unprocessed Image",src);
 
         dst = src.clone();
         hsv = src.clone();
 
         //cv::cvtColor(src, dst, COLOR_BGR2GRAY);
-        cv::cvtColor(dst, dst, COLOR_BGR2HSV);
+        cv::cvtColor(src, dst, COLOR_BGR2HSV);
 
         cv::inRange(dst, Scalar(0, 0, 245), Scalar(0, 0, 255), hsv);
 
@@ -54,14 +54,19 @@ int main( int argc, char** argv )
         params.minArea = 50;
         params.maxArea = 20000000;
 
-        SimpleBlobDetector detector(params);
-        
         std::vector<KeyPoint> keypoints;
-        detector.detect(hsv, keypoints);
+
+        //OpenCV3
+        Ptr<SimpleBlobDetector> detector = SimpleBlobDetector::create(params);
+        detector->detect(hsv, keypoints);
+
+        //OpenCV2
+        //SimpleBlobDetector dedector(params);
+        //detector.detect(dst, keypoints);
 
         //namedWindow( window_name2, WINDOW_AUTOSIZE );
         Mat im_with_keypoints;
-        drawKeypoints(src, keypoints, im_with_keypoints, Scalar(0,0,255), DrawMatchesFlags::DRAW_RICH_KEYPOINTS );
+        drawKeypoints(hsv, keypoints, im_with_keypoints, Scalar(0,0,255), DrawMatchesFlags::DRAW_RICH_KEYPOINTS );
  
         // Show blobs
         imshow("keypoints", im_with_keypoints);
