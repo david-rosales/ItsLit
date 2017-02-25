@@ -1,6 +1,0 @@
-cmake_minimum_required(VERSION 2.8)
-project( ItsLit )
-find_package( OpenCV )
-include_directories( ${OpenCV_INCLUDE_DIRS} )
-add_executable( ItsLit ItsLit.cpp )
-target_link_libraries( ItsLit ${OpenCV_LIBS} )
