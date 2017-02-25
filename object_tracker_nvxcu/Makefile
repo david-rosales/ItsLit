@@ -113,8 +113,8 @@ CPP_FILES := $(wildcard *.cpp)
 OBJ_DIR := obj/$(TARGET)
 OBJ_FILES_CPP := $(addprefix $(OBJ_DIR)/,$(notdir $(CPP_FILES:.cpp=.o)))
 
-OUTPUT_DIR := ./bin/$(OS_ARCH)/$(OSLOWER)/$(TARGET)$(if $(abi),/$(abi))
-
+#OUTPUT_DIR := ./bin/$(OS_ARCH)/$(OSLOWER)/$(TARGET)$(if $(abi),/$(abi))
+OUTPUT_DIR := ./bin
 ################################################################################
 
 # Target rules
