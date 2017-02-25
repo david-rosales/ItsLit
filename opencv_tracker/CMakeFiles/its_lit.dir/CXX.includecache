@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ubuntu/Documents/itlit/opencv_tracker/its_lit.cpp
+opencv2/imgproc/imgproc.hpp
+/home/ubuntu/Documents/itlit/opencv_tracker/opencv2/imgproc/imgproc.hpp
+opencv2/highgui/highgui.hpp
+/home/ubuntu/Documents/itlit/opencv_tracker/opencv2/highgui/highgui.hpp
+opencv2/opencv.hpp
+/home/ubuntu/Documents/itlit/opencv_tracker/opencv2/opencv.hpp
+iostream
+-
+
