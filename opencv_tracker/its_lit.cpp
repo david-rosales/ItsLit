@@ -61,14 +61,18 @@ int main( int argc, char** argv )
 
         std::vector<KeyPoint> keypoints;
 
-        //OpenCV3
-        //Ptr<SimpleBlobDetector> detector = SimpleBlobDetector::create(params);
-        //detector->detect(hsv, keypoints);
 
+	#if CV_MAJOR_VERSION < 3
         //OpenCV2
         SimpleBlobDetector detector(params);
         detector.detect(hsv, keypoints);
-
+	#else
+        //OpenCV3
+        Ptr<SimpleBlobDector> detector = SimpleBlobDetector::create(params);
+        detector->detect(hsv, keypoints);
+        #endif 
+        
+        
         //namedWindow( window_name2, WINDOW_AUTOSIZE );
         Mat im_with_keypoints;
         drawKeypoints(hsv, keypoints, im_with_keypoints, Scalar(0,0,255), DrawMatchesFlags::DRAW_RICH_KEYPOINTS );
