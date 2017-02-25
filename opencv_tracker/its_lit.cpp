@@ -54,10 +54,10 @@ int main( int argc, char** argv )
         params.minArea = 50;
         params.maxArea = 20000000;
 
-        Ptr<SimpleBlobDetector> detector = SimpleBlobDetector::create(params);
+        SimpleBlobDetector detector(params);
         
         std::vector<KeyPoint> keypoints;
-        detector->detect(hsv, keypoints);
+        detector.detect(hsv, keypoints);
 
         //namedWindow( window_name2, WINDOW_AUTOSIZE );
         Mat im_with_keypoints;
