@@ -14,13 +14,22 @@ Mat src; Mat bw;
 char window_name1[] = "Unprocessed Image";
 char window_name2[] = "Processed Image";
 
-
+KeyPoint maxSizePoint(std::vector<KeyPoint> keypoints)
+{
+    Keypoint maxPoint = new KeyPoint(0.0, 0.0, -1);
+    for (auto const& keypoint: keypoints) {
+      if (keypoint.size() > maxPoint.size()) {
+        maxPoint = keypoint;
+      }
+    }
+    return maxPoint;
+}
 
 int main( int argc, char** argv )
 {
     // 18.111.40.224
     /// Load the source image
-    VideoCapture cap(0);    
+    VideoCapture cap(0);
 
     while(true){
         cap >> src;
@@ -30,7 +39,7 @@ int main( int argc, char** argv )
         //cv::dilate(bw, bw, 0);
 
         SimpleBlobDetector::Params params;
-        
+
         //Change thresholds
         params.minThreshold = 100;
         params.maxThreshold = 200;
@@ -60,10 +69,14 @@ int main( int argc, char** argv )
         //OpenCV3
         Ptr<SimpleBlobDetector> detector = SimpleBlobDetector::create(params);
         detector->detect(bw, keypoints);
-        #endif 
-        
+        #endif
+
+
+        KeyPoint mainPoint = maxSizePoint(keypoints);
+        std::vector<KeyPoint> bestPoints(1);
+        bestPoints[0] = mainPoint;
         Mat im_with_keypoints;
-        drawKeypoints(bw, keypoints, im_with_keypoints, Scalar(0,0,255), DrawMatchesFlags::DRAW_RICH_KEYPOINTS );
+        drawKeypoints(bw, bestPoints, im_with_keypoints, Scalar(0,0,255), DrawMatchesFlags::DRAW_RICH_KEYPOINTS );
         imshow("keypoints", im_with_keypoints);
 
         waitKey(1);
