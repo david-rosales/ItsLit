@@ -22,8 +22,7 @@ int main( int argc, char** argv )
         namedWindow( window_name1, WINDOW_AUTOSIZE );
         imshow("Unprocessed Image",src);
 
-        dst = src.clone();
-        GaussianBlur( src, dst, Size( 15, 15 ), 0, 0 );
+        cv::cvtColor(src, dst, COLOR_BGR2GRAY);
 
         namedWindow( window_name2, WINDOW_AUTOSIZE );
         imshow("Processed Image",dst);

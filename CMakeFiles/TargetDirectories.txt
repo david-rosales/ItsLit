@@ -1,0 +1,3 @@
+/Users/anekin/Desktop/ItsLit/CMakeFiles/rebuild_cache.dir
+/Users/anekin/Desktop/ItsLit/CMakeFiles/edit_cache.dir
+/Users/anekin/Desktop/ItsLit/CMakeFiles/its_lit.dir
