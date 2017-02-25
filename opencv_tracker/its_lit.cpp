@@ -37,7 +37,7 @@ int main( int argc, char** argv )
 
         //Reduces the visible items
         cv::inRange(src, Scalar(245, 245, 245), Scalar(255, 255, 255), bw);
-        //cv::dilate(bw, bw, 0);
+        cv::dilate(bw, bw, 0, Point(-1, -1), 3);
 
         SimpleBlobDetector::Params params;
 
@@ -81,7 +81,7 @@ int main( int argc, char** argv )
 	  bestPoints.push_back(keypoints[0]);
 	}
 	Mat im_with_keypoints;
-        drawKeypoints(bw, bestPoints, im_with_keypoints, Scalar(0,0,255), DrawMatchesFlags::DRAW_RICH_KEYPOINTS );
+        drawKeypoints(src, bestPoints, im_with_keypoints, Scalar(0,0,255), DrawMatchesFlags::DRAW_RICH_KEYPOINTS );
         imshow("keypoints", im_with_keypoints);
 
         waitKey(1);
