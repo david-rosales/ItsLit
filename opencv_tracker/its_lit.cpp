@@ -14,12 +14,13 @@ Mat src; Mat bw;
 char window_name1[] = "Unprocessed Image";
 char window_name2[] = "Processed Image";
 
-KeyPoint maxSizePoint(std::vector<KeyPoint> keypoints)
+KeyPoint* maxSizePoint(std::vector<KeyPoint> keypoints)
 {
-    Keypoint maxPoint = new KeyPoint(0.0, 0.0, -1);
-    for (auto const& keypoint: keypoints) {
-      if (keypoint.size() > maxPoint.size()) {
-        maxPoint = keypoint;
+    KeyPoint* maxPoint = new KeyPoint(0.0, 0.0, 1);
+    for (unsigned int i = 0; i < keypoints.size(); i++) {
+      KeyPoint keypoint = keypoints[i];
+      if (keypoint.size > maxPoint->size) {
+        *maxPoint = keypoint;
       }
     }
     return maxPoint;
@@ -56,7 +57,7 @@ int main( int argc, char** argv )
 
         params.filterByArea = true;
         params.minArea = 50;
-        params.maxArea = 2000;
+        params.maxArea = 2000000;
 
         std::vector<KeyPoint> keypoints;
 
@@ -72,10 +73,14 @@ int main( int argc, char** argv )
         #endif
 
 
-        KeyPoint mainPoint = maxSizePoint(keypoints);
-        std::vector<KeyPoint> bestPoints(1);
-        bestPoints[0] = mainPoint;
-        Mat im_with_keypoints;
+        KeyPoint* mainPoint = maxSizePoint(keypoints);
+        std::vector<KeyPoint> bestPoints;
+        if (mainPoint != NULL) {
+	  bestPoints.push_back((const KeyPoint) *mainPoint);
+        } else {
+	  bestPoints.push_back(keypoints[0]);
+	}
+	Mat im_with_keypoints;
         drawKeypoints(bw, bestPoints, im_with_keypoints, Scalar(0,0,255), DrawMatchesFlags::DRAW_RICH_KEYPOINTS );
         imshow("keypoints", im_with_keypoints);
 
