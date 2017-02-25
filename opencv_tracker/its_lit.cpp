@@ -10,7 +10,7 @@ using namespace cv;
 #define CV_VERSION "welp"
 #endif
 
-Mat src; Mat dst; Mat hsv; Mat new_image;
+Mat src; Mat bw;
 char window_name1[] = "Unprocessed Image";
 char window_name2[] = "Processed Image";
 
@@ -25,19 +25,9 @@ int main( int argc, char** argv )
     while(true){
         cap >> src;
 
-        //src = imread(argv[1]);
-
-        //namedWindow( window_name1, WINDOW_AUTOSIZE );
-        //imshow("Unprocessed Image",src);
-
-        //dst = src.clone();
-        //hsv = src.clone();
-
-        //cv::cvtColor(src, dst, COLOR_BGR2GRAY);
-        //cv::cvtColor(src, dst, COLOR_BGR2HSV);
-
-        cv::inRange(src, Scalar(245, 245, 245), Scalar(255, 255, 255), hsv);
-
+        //Reduces the visible items
+        cv::inRange(src, Scalar(245, 245, 245), Scalar(255, 255, 255), bw);
+        //cv::dilate(bw, bw, 0);
 
         SimpleBlobDetector::Params params;
         
@@ -65,21 +55,16 @@ int main( int argc, char** argv )
 	#if CV_MAJOR_VERSION < 3
         //OpenCV2
         SimpleBlobDetector detector(params);
-        detector.detect(hsv, keypoints);
+        detector.detect(bw, keypoints);
 	#else
         //OpenCV3
-        Ptr<SimpleBlobDector> detector = SimpleBlobDetector::create(params);
-        detector->detect(hsv, keypoints);
+        Ptr<SimpleBlobDetector> detector = SimpleBlobDetector::create(params);
+        detector->detect(bw, keypoints);
         #endif 
         
-        
-        //namedWindow( window_name2, WINDOW_AUTOSIZE );
         Mat im_with_keypoints;
-        drawKeypoints(hsv, keypoints, im_with_keypoints, Scalar(0,0,255), DrawMatchesFlags::DRAW_RICH_KEYPOINTS );
- 
-        // Show blobs
+        drawKeypoints(bw, keypoints, im_with_keypoints, Scalar(0,0,255), DrawMatchesFlags::DRAW_RICH_KEYPOINTS );
         imshow("keypoints", im_with_keypoints);
-        //imshow("Processed Imaged",hsv);
 
         waitKey(1);
 
