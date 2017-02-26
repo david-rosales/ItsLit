@@ -70,11 +70,66 @@ double delta_y(KeyPoint keypoint, double centerY){
     return distance;
 }
 
+bool init_serial(int argc, char** argv) {
+  c_serial_port_t* m_port;
+  c_serial_control_lines_t m_lines;
+  int status;
+
+  /*
+   * Use the first argument as the port to open
+   */
+  if( argc != 2 ){
+    fprintf( stderr, "ERROR: First argument must be serial port\n" );
+    /*
+     * Since no port was provided, print the available ports
+     */
+    const char** port_list = c_serial_get_serial_ports_list();
+    int x = 0;
+    printf("Available ports:\n");
+    while( port_list[ x ] != NULL ){
+      printf( "%s\n", port_list[ x ] );
+      x++;
+    }
+    c_serial_free_serial_ports_list( port_list );
+    return false;
+  }
+
+  if(c_serial_new(&m_port, NULL) < 0) {
+    fprintf(stderr, "ERROR: Unable to create new serial \n");
+    return false;
+  }
+
+  if( c_serial_set_port_name(m_port, argv[1]) < 0) {
+    fprintf(stderr, "ERROR: cant set the port name \n");
+  }
+
+
+  c_serial_set_baud_rate(m_port, CSERIAL_BAUD_9600);
+  c_serial_set_data_bits(m_port, CSERIAL_BITS_8);
+  c_serial_set_stop_bits(m_port, CSERIAL_STOP_BITS_1);
+  c_serial_set_parity(m_port, CSERIAL_PARITY_NONE);
+  c_serial_set_flow_control(m_port, CSERIAL_FLOW_NONE);
+
+  status = c_serial_open(m_port);
+  if (status < 0) {
+    fprintf(stderr, "ERROR: cant open serial port \n");
+    return false;
+  } 
+  return true;
+}
+
 int main( int argc, char** argv )
 {
     // 18.111.40.224
     /// Load the source image
+    int byte_read;
+    uint8_t data[255];
     VideoCapture cap(0);
+
+    if (!init_serial(argc, argv)) {
+      return -1;
+    }
+
     //cap.set(CV_CAP_PROP_EXPOSURE, -2);
     //cap.set(CV_CAP_PROP_GAIN, 0);
     //cap.set(CV_CAP_PROP_ISO_SPEED, 0);
