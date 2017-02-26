@@ -20,8 +20,8 @@ double weight_func(KeyPoint * keypoint, KeyPoint * oldMax);
 double distance_between_pts(double x_1, double y_1, double x_2, double y_2);
 
 typedef struct Adjustments {
-  double x;
-  double y;
+  int x;
+  int y;
 } Adjustments;
 
 bool sendAdjustments(Adjustments adjustments) {
@@ -65,13 +65,13 @@ double distance_between_pts(double x_1, double y_1, double x_2, double y_2)
   return pow(distance, 0.5);
 }
 
-double delta_x(KeyPoint keypoint, double centerX){
-    double distance = keypoint.pt.x - centerX;
+int delta_x(KeyPoint keypoint, int centerX){
+    int distance = keypoint.pt.x - centerX;
     return distance;
 }
 
-double delta_y(KeyPoint keypoint, double centerY){
-    double distance = keypoint.pt.y - centerY;
+int delta_y(KeyPoint keypoint, int centerY){
+    int distance = keypoint.pt.y - centerY;
     return distance;
 }
 
@@ -184,8 +184,16 @@ int main( int argc, char** argv )
 
 
         mainPoint = maxSizePoint(keypoints, mainPoint);
-        double deltaX = delta_x(*mainPoint, src.cols/2);
-        double deltaY = delta_y(*mainPoint, src.rows/2);
+        int deltaX = delta_x(*mainPoint, src.cols/2);
+        int deltaY = delta_y(*mainPoint, src.rows/2);
+        
+        Adjustments adjs;
+        adjs.x = deltaX;
+        adjs.y = deltaY;
+
+        sendAdjustments(adjs);
+
+
         std::vector<KeyPoint> bestPoints;
         if (mainPoint != NULL) {
 	        bestPoints.push_back((const KeyPoint) *mainPoint);
