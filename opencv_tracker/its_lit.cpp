@@ -76,7 +76,7 @@ KeyPoint* maxSizePoint(std::vector<KeyPoint> keypoints, KeyPoint * oldMax, doubl
 double weight_func(KeyPoint * keypoint, KeyPoint * oldMax) 
 {
   double distance_weight = 0.40;
-  double distance_numerator = 200000;
+  double distance_numerator = 1000000;
   double size_weight = 0.75;
 
   Point2f p1 = oldMax->pt;
@@ -214,6 +214,9 @@ int main( int argc, char** argv )
         mainPoint = maxSizePoint(keypoints, mainPoint, src.cols/2, src.rows/2);
         int deltaX = delta_x(*mainPoint, src.cols/2);
         int deltaY = delta_y(*mainPoint, src.rows/2);
+
+        cout << deltaX << "\n";
+        cout << deltaY << "\n\n";
         
         Adjustments adjs;
         adjs.x = deltaX;
