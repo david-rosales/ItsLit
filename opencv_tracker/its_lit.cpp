@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <cserial/c_serial.h>
 #include <string>
+#include <cstdlib>
 
 using namespace std;
 using namespace cv;
@@ -22,6 +23,10 @@ typedef struct Adjustments {
   double x;
   double y;
 } Adjustments;
+
+bool sendAdjustments(Adjustments adjustments) {
+
+}
 
 KeyPoint* maxSizePoint(std::vector<KeyPoint> keypoints, KeyPoint * oldMax)
 {
