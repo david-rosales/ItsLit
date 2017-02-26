@@ -60,7 +60,15 @@ double distance_between_pts(double x_1, double y_1, double x_2, double y_2)
   return pow(distance, 0.5);
 }
 
+double delta_x(KeyPoint keypoint, double centerX){
+    double distance = keypoint.pt.x - centerX;
+    return distance;
+}
 
+double delta_y(KeyPoint keypoint, double centerY){
+    double distance = keypoint.pt.y - centerY;
+    return distance;
+}
 
 int main( int argc, char** argv )
 {
@@ -104,25 +112,27 @@ int main( int argc, char** argv )
         std::vector<KeyPoint> keypoints;
 
 
-	#if CV_MAJOR_VERSION < 3
-        //OpenCV2
-        SimpleBlobDetector detector(params);
-        detector.detect(bw, keypoints);
-	#else
-        //OpenCV3
-        Ptr<SimpleBlobDetector> detector = SimpleBlobDetector::create(params);
-        detector->detect(bw, keypoints);
+	    #if CV_MAJOR_VERSION < 3
+            //OpenCV2
+            SimpleBlobDetector detector(params);
+            detector.detect(bw, keypoints);
+    	#else
+            //OpenCV3
+            Ptr<SimpleBlobDetector> detector = SimpleBlobDetector::create(params);
+            detector->detect(bw, keypoints);
         #endif
 
 
         mainPoint = maxSizePoint(keypoints, mainPoint);
+        double deltaX = delta_x(*mainPoint, src.cols/2);
+        double deltaY = delta_y(*mainPoint, src.rows/2);
         std::vector<KeyPoint> bestPoints;
         if (mainPoint != NULL) {
-	  bestPoints.push_back((const KeyPoint) *mainPoint);
+	        bestPoints.push_back((const KeyPoint) *mainPoint);
         } else {
-	  bestPoints.push_back(keypoints[0]);
-	}
-	Mat im_with_keypoints;
+	       bestPoints.push_back(keypoints[0]);
+    	}
+	    Mat im_with_keypoints;
         drawKeypoints(bw, bestPoints, im_with_keypoints, Scalar(0,0,255), DrawMatchesFlags::DRAW_RICH_KEYPOINTS );
         imshow("keypoints", im_with_keypoints);
 
