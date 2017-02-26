@@ -3,10 +3,13 @@
 #include "opencv2/opencv.hpp"
 #include <cmath>
 #include <iostream>
+#include <stdint.h>
+#include <stdio.h>
+#include <cserial/c_serial.h>
+#include <string>
 
 using namespace std;
 using namespace cv;
-
 
 Mat src; Mat bw;
 char window_name1[] = "Unprocessed Image";
@@ -14,6 +17,11 @@ char window_name2[] = "Processed Image";
 
 double weight_func(KeyPoint * keypoint, KeyPoint * oldMax);
 double distance_between_pts(double x_1, double y_1, double x_2, double y_2);
+
+typedef struct Adjustments {
+  double x;
+  double y;
+} Adjustments;
 
 KeyPoint* maxSizePoint(std::vector<KeyPoint> keypoints, KeyPoint * oldMax)
 {
