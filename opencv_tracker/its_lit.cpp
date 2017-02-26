@@ -5,6 +5,7 @@
 #include <iostream>
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <cserial/c_serial.h>
 #include <string>
 #include <cstdlib>
@@ -12,7 +13,7 @@
 using namespace std;
 using namespace cv;
 
-Mat src; Mat bw;
+Mat src; Mat bw; c_serial_port_t* m_port;
 char window_name1[] = "Unprocessed Image";
 char window_name2[] = "Processed Image";
 
@@ -25,7 +26,35 @@ typedef struct Adjustments {
 } Adjustments;
 
 bool sendAdjustments(Adjustments adjustments) {
+  char x_str[33];
+  char y_str[33];
+  snprintf (x_str, 33, "%d", adjustments.x);
+  snprintf (y_str, 33, "%d", adjustments.y);
+  
+  char data[255];
+  int data_length = 0;
+  int i = 0;
+  while (x_str[i] != '\0') {
+    data[data_length] = x_str[i];
+    i++;
+    data_length++;
+  }
+  data[data_length] = ' ';
+  data_length++;
+  i = 0;
+  while (y_str[i] != '\0') {
+    data[data_length] = y_str[i];
+    i++;
+    data_length++;
+  }
+  data[data_length] = '\n';
+  data_length++;
 
+  int status = c_serial_write_data(m_port, data, &data_length);
+  if (status <0 ) {
+    return false;
+  }
+  return true;  
 }
 
 KeyPoint* maxSizePoint(std::vector<KeyPoint> keypoints, KeyPoint * oldMax)
@@ -76,7 +105,6 @@ int delta_y(KeyPoint keypoint, int centerY){
 }
 
 bool init_serial(int argc, char** argv) {
-  c_serial_port_t* m_port;
   c_serial_control_lines_t m_lines;
   int status;
 
