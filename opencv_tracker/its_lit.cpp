@@ -57,9 +57,9 @@ bool sendAdjustments(Adjustments adjustments) {
   return true;  
 }
 
-KeyPoint* maxSizePoint(std::vector<KeyPoint> keypoints, KeyPoint * oldMax)
+KeyPoint* maxSizePoint(std::vector<KeyPoint> keypoints, KeyPoint * oldMax, double centerX, double centerY)
 {
-    KeyPoint* maxPoint = new KeyPoint(0.0, 0.0, 0.0);
+    KeyPoint* maxPoint = new KeyPoint(centerX, centerY, 0.0);
     double max_weight = 0;
     for (unsigned int i = 0; i < keypoints.size(); i++) {
       double keypoint_weight = weight_func(&keypoints[i], oldMax);
@@ -211,7 +211,7 @@ int main( int argc, char** argv )
         #endif
 
 
-        mainPoint = maxSizePoint(keypoints, mainPoint);
+        mainPoint = maxSizePoint(keypoints, mainPoint, src.cols/2, src.rows/2);
         int deltaX = delta_x(*mainPoint, src.cols/2);
         int deltaY = delta_y(*mainPoint, src.rows/2);
         
