@@ -234,7 +234,7 @@ html, body {
 }
 
 .mdl-layout__header {
-  background: url('../static/banner.jpg') bottom -10% left 50% no-repeat #46B6AC;
+  background: url('../static/banner.jpg') bottom 0 left 50% no-repeat #46B6AC;
   background-size: cover;
 }
 
