@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>LUX - Light Used for eXamination</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/material.min.js" type="text/javascript"></script>
+    <script>
+      clickOverview = function(target) {
+        document.getElementById('overview-tab-button').click();
+        if (target) {
+          window.location.href = '#overview' + target;
+        } else {
+          window.location.href = '#overview1';
+        }
+      }
+
+      clickFeatures = function(target) {
+        document.getElementById('features-tab-button').click();
+        if (target) {
+          window.location.href = '#features' + target;
+        } else {
+          window.location.href = "#features-ff-header";
+        }
+      }
+
+      clickTeams = function(name) {
+        document.getElementById('team-tab-button').click();
+        if (name) {
+          window.location.href = "#" + name;
+        } else {
+          window.location.href = "#team";
+        }
+      }
+    </script>
+  </head>
+  <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+          <h3 class="site-banner-header mdl-color--accent">LUX</h3>
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
+          <a id="overview-tab-button" href="#overview" class="mdl-layout__tab is-active">Overview</a>
+          <a id="features-tab-button" href="#features" class="mdl-layout__tab">Features</a>
+          <a id="team-tab-button" href="#team" class="mdl-layout__tab">Team</a>
+        </div>
+      </header>
+      <main class="mdl-layout__content">
+        <div class="mdl-layout__tab-panel is-active" id="overview">
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <header id="header-card" class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
+              <!-- <i class="material-icons">play_circle_filled</i> -->
+            </header>
+            <div class="mdl-card mdl-cell mdl-cell--8-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+              <div id="overview1" class="mdl-card__supporting-text">
+                <h4>LUX</h4>
+                LUX was a hackathon project aimed at exploring different applications of computer vision.
+                Its designed for all those times you need a flashlight but your two hands are full.
+              </div>
+              <div class="mdl-card__actions">
+                <a href="#" onclick="clickFeatures()" class="mdl-button">Read our features</a>
+              </div>
+            </div>
+          </section>
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div id="overview2" class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                <h4 class="mdl-cell mdl-cell--12-col">Highlights</h4>
+                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                  <div class="section__circle-container__circle mdl-color--primary">
+                    <div class="material-icons-container">
+                      <i class="material-icons md-48 center-icon" role="presentation">extension</i>
+                    </div>
+                  </div>
+                </div>
+                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                  <h5>Expandable platform</h5>
+                  Easy to expand and add more tracking lights and cameras.
+                </div>
+                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                  <div class="section__circle-container__circle mdl-color--primary">
+                    <div class="material-icons-container">
+                      <i class="material-icons md-48 center-icon" role="presentation">visibility</i>
+                    </div>
+                  </div>
+                </div>
+                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                  <h5>Passive Trackers</h5>
+                  Trackers are easy to manufacture and can be made into any number objects.
+                </div>
+                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                  <div class="section__circle-container__circle mdl-color--primary">
+                    <div class="material-icons-container">
+                      <i class="material-icons md-48 center-icon" role="presentation">accessibility</i>
+                    </div>
+                  </div>
+                </div>
+                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                  <h5>Collaborative</h5>
+                    Work together with friends. Objects being tracked and the tracking units can be
+                    dynamically paired.
+                </div>
+                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                  <div class="section__circle-container__circle mdl-color--primary">
+                    <div class="material-icons-container">
+                      <i class="material-icons md-48 center-icon" role="presentation">add</i>
+                    </div>
+                  </div>
+                </div>
+                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                  <h5>Many Uses</h5>
+                    The LUX platform can be used in plenty of different places. It supports large systems
+                    with one base station, or smaller portable lights with a complete tracking system.
+                </div>
+              </div>
+              <div class="mdl-card__actions">
+                <a href="#" onclick="clickFeatures()" class="mdl-button">Read our features</a>
+              </div>
+            </div>
+          </section>
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div id="overview3" class="mdl-card mdl-cell mdl-cell--8-col">
+              <div class="mdl-card__supporting-text">
+                <h4>Team 16</h4>
+                We're a lovable gang of engineers from MIT. Find out more about us here.
+              </div>
+              <div class="mdl-card__actions">
+                <a onclick="clickTeams()" class="mdl-button">More about our team</a>
+              </div>
+            </div>
+            <header id="team16-overview" class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-color--teal-100">
+            </header>
+          </section>
+        </div>
+        <div class="mdl-layout__tab-panel" id="features">
+          <section class="section--center mdl-grid mdl-grid--no-spacing">
+            <div class="mdl-cell mdl-cell--12-col">
+              <h4 id="features-ff-header">LUX</h4>
+              What is it? LUX (Light Under eXamination - we tried) was a hackathon project
+              aimed at exploring the applications of computer vision.
+              <ul class="toc">
+                <h4>Contents</h4>
+                <a href="#features1">Overview</a>
+                <a href="#features2">Key Features</a>
+                <a href="#features3">Initial Prototype and Development</a>
+                <a href="#features4">Future Plans</a>
+              </ul>
+
+              <h5 id="features1">Overview</h5>
+              <p>
+                Virtual reality systems are gradually becoming more accessible.
+                 With the Oculus Rift, you can now visually immerse yourself in
+                  these virtual worlds and with the Leap Motion, you can even
+                  interact with these environments through gestures.
+                  Unfortunately, feedback systems are still miles behind.
+              </p>
+
+              <p>
+                We designed and built the Force Feel'd to fill in this gap
+                created by the disparity between senses. The glove interfaces
+                with both the Oculus Rift and the Leap Motion to bring simple,
+                unidirectional feedback to these VR interfaces, bridging mind
+                and hand.
+              </p>
+
+              <h5 id="features2">Key Features</h5>
+              Force Feel'd was developed with the pitfalls of typical haptics
+              systems in mind, to build a better and more robust platform.
+              <ul>
+                <li>Controls resistivity of motion, not direct manipulation of
+                  your hand.</li>
+                <li>Interfaces with preexisting Unity projects to make it easy
+                  to integrate into projects.</li>
+                <li>Makes use of simple Serial and Bluetooth APIs so that it can
+                  be controlled and manipulated regardless of language or
+                  project environments.</li>
+              </ul>
+
+              <h5 id="features3">Initial Prototype and Development</h5>
+              <p>
+                We created the initial prototype at <strong>Phase I</strong> of
+                <a href="http://makemit.org">MakeMIT</a>, a hardware hackathon
+                sponsored by MIT. When going about the design of the glove, we
+                aimed for creating an experience that would provide a great deal
+                of authenticity when interacting with objects in the virtual space
+                while still being safe to use.
+              </p>
+              <p>
+                With these design principals in mind, we came up with one of the
+                key features of the product: the glove does not control motion,
+                but instead <strong>resist</strong> motion. The worse that our
+                actuated components can do is prevent the user's finger from being able
+                to push down more than it already has.
+              </p>
+              <p class="center-text">
+                <img class="feature-image" src="static/v1-cad-mockup.jpg"/>
+                CAD mockup for our laser cut parts for the initial prototypes.
+              </p>
+              <p>
+                We did this by creating finger modules that are comprised of 3
+                parts: the arm, the spool, and the break. The arm provides an
+                just enough elastic force to keep the spool tight, but not enough
+                to prevent the user from being able to actually use thier hand
+                under normal conditions. The spool holds most of the line that
+                is then connected to the finger. It also provides the contact
+                surface for the break to work properly. The breaks simply surround
+                spool and apply a range of friction forces to the spool to give
+                the allusion of touching objects with different viscosities.
+              </p>
+              <p class="center-text">
+                <img class="feature-image" src="static/v1-image.jpg"/>
+                Picture of our assembled prototype from MakeMIT Phase I.
+              </p>
+              <p>
+                In terms of electrical components, we used an simple
+                Arduino communicating with a computer via serial, using signals
+                from the computer to manipulate two servo motors.  For safety we
+                required a constant "Watchdog" signal, which if not received
+                would release all brakes in the glove. This way if there was a
+                software error or crash the user would not be stuck. Both power
+                and communication was sent through the USB tether.
+              </p>
+              <p>
+                On the software demo side, we made heavy use of Unity and example
+                projects that resided within the Leap Motion and Oculus SDK's.
+                Because Unity scripts can be written in C#, we simply used the
+                default serial library in C# to communicate with the glove
+                through a USB host. This script has public interfaces to send
+                different signals to the glove from within a scene. Since we
+                wanted to add varying levels of resistance collisions of
+                different types, we created additional scripts that would
+                interface with our glove to dictate the degree of resistance
+                that was desired. However this meant that any collidable object
+                that we wanted to be able to feel with the glove would need to
+                use implement this script and add its resistance factor, this
+                script would then be in charge of calling a method on our main
+                script that would. In regards to the Watch Dog signal that was
+                described earlier, our main script that was in charge of handling
+                the constant checking in to ensure that the device and evniroment
+                is all properly configured.
+
+              </p>
+              <h5 id="features4">Second Generation Improvements</h5>
+              <p>
+                While working on improvements for the second version of our product,
+                we had two goals in mind: make the platform easier incorporate
+                into other projects and make the glove wireless.
+              </p>
+              <p>
+                Since we made heavy use of Unity previously, we continued to
+                expand on what we had and greatly improved the assets that we
+                used to interface with the glove. This time around, we
+                reimplemented our scripts such that it would use the physics of
+                the objects that are being interacted with to dictate how much
+                resistance was to be provided. This didn't require additional
+                scripts that would need to be added to each object that would be
+                collided with, instead the hand asset would be able to detect
+                collisions and from there send the message to glove with how
+                much resistivity was needed for the collision.
+              </p>
+              <p class="center-text">
+                <img class="feature-image" src="static/v2-image-on.jpg"/>
+                Picture of the second prototype and Leap Motion Sensor.
+              </p>
+              <p>
+                To accomplish the second goal, we added a Bluetooth sensor and
+                battery pack along with using a smaller microcontroller to have
+                this package fit more easily on the forearm. This all required
+                us to move away from the straight serial implementation that we
+                had before to instead using Bluetooth to communicate to the
+                glove. This required that we start up a Bluetooth server and
+                have our demos connect to the glove to start transmission.
+                Furthermore, our new watchdog signal would be whether the glove
+                is connected to our demo or not.
+              </p>
+              <p>
+                In terms of the other hardware, the focus was to make the footprint
+                of the different compoenents smaller, thus making the whole glove
+                easier to wear. As such we created smaller, vertical brakes as
+                well using fabric for the base of the glove. We also shrunk the footprint
+                of the electical components by using a smaller arduino and a small
+                bluetooh receiver.
+              </p>
+              <p class="center-text">
+                <img class="feature-image" src="static/v2-maniquin.jpg"/>
+                Close-up photo of second generation prototype.
+              </p>
+            </div>
+          </section>
+        </div>
+        <div class="mdl-layout__tab-panel" id="team">
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <header id="team-header-card" class="section__play-btn mdl-cell mdl-cell--8-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
+              <!-- <i class="material-icons">play_circle_filled</i> -->
+
+            </header>
+            <div class="mdl-card mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+              <div class="mdl-card__supporting-text">
+                <h4>Team 16</h4>
+                The team got together to work on this project idea at <a href="http://makemit.org">MakeMIT</a> (2017).
+                Comprised of 5 undergraduates from MIT, 4 seniors and 1 sophomore. 4 of the members,
+                were part of the team that created <a href="http://everrosales.github.io/MakeMIT-2015">Force Feel'd</a>.
+              </div>
+              <!-- <div class="mdl-card__actions">
+                <a href="#" class="mdl-button">Read our features</a>
+              </div> -->
+            </div>
+          </section>
+          <section id="anekin" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <header class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
+            </header>
+            <div class="mdl-card mdl-cell mdl-cell--8-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+              <div class="mdl-card__supporting-text">
+                <h4>David Rosales <a href="https://github.com/david-rosales"><i class="material-icons" role="presentation">launch</i></a></h4>
+                  Sophomore at MIT studying Computer Science.
+                  <br><br>
+                  Worked heavily on the software side of LUX.
+              </div>
+            </div>
+          </section>
+          <section id="erosales" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--8-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+              <div class="mdl-card__supporting-text">
+                <h4>Everardo Rosales <a href="http://everrosales.github.io"><i class="material-icons" role="presentation">launch</i></a></h4>
+                Computer Systems Engineer. Operating systems, computer architecture, fullstack web development, etc.
+                Currently a Senior at MIT majoring in Computer Science and loves building, hacking,
+                and creating random projects.
+                <br><br>
+                On the software sides of the project with David.
+                I was specifically in charge of system setup and integration of the different
+                systems we used. This really just amounted to wrestling with everything to make
+                sure all of the required configurations were set and everything could be built.
+                Lots of pair programming with David.
+              </div>
+            </div>
+            <header class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
+            </header>
+          </section>
+          <section id="jsloane" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <header class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
+            </header>
+            <div class="mdl-card mdl-cell mdl-cell--8-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+              <div class="mdl-card__supporting-text">
+                <h4>Joshua Sloane</h4>
+                Electrical engineer with experience in embedded design and IC design.
+                A Senior at MIT majoring in electrical engineering.
+                <br /><br />
+                For LUX, he did the electronics design and assembly, along with the needed
+                microcontroller programing to interface with the servos and the computer.
+                He also worked on both the microcontroller and computer side debugging the interface
+                to ensure reliability. Finally he set up some capacitive touch buttons for
+                controlling the light's brightness.
+              </div>
+            </div>
+          </section>
+          <section id="pozhu" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--8-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+              <div class="mdl-card__supporting-text">
+                <h4>Joanna Zhu <a href="https://www.linkedin.com/in/joannapozhu/"><i class="material-icons" role="presentation">launch</i></a></h4>
+                Junior at MIT studying Mechanical Engineering looking forward to
+                narrowing my focus to product design with a strong background
+                in robotics.
+                <br><br>
+                For the first prototype, was tasked with all of the CAD work and
+                processing for 3D printing and laser cutting. Also worked on bits
+                and pieces of the general design of the hardware. For the second
+                prototype, did all of the ergonomic work and design, as well as
+                the design for the finger mounts and arm plates.
+              </div>
+            </div>
+            <header class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
+            </header>
+          </section>
+          <section id="tneedham" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <header class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
+            </header>
+            <div class="mdl-card mdl-cell mdl-cell--8-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+              <div class="mdl-card__supporting-text">
+                <h4>Thomas Needham <a href="http://tneedham.github.io/Portfolio"><i class="material-icons" role="presentation">launch</i></a></h4>
+                  Hands-on mechatronics Junior at MIT interested in working on
+                  the behind-the-scenes portions of new tech. Structures,
+                  controls, robotics, automation, and solving problems such that
+                  the user doesn't even notice.
+                  <br><br>
+                  For the first generation Force Feel'd, he designed both
+                  generations of our braking mechanism, finger supports and
+                  forearm mount, and ancillary mechanicals for both models.
+                  Additionally, manufacture and assembly of "hard" components
+                  (non-ergonomic) especially for the second generation Force
+                  Feel'd - with access to a full shop beyond just laser cutters and 3D printers.
+              </div>
+            </div>
+          </section>
+        </div>
+        <footer class="mdl-mega-footer">
+          <div class="mdl-mega-footer--middle-section">
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+              <h1 class="mdl-mega-footer--heading">Overview</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a onclick="clickOverview()">LUX</a></li>
+                <li><a onclick="clickOverview()">Highlights</a></li>
+                <li><a onclick="clickOverview()">Team 16</a></li>
+              </ul>
+            </div>
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+              <h1 class="mdl-mega-footer--heading">Features</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a onclick="clickFeatures(1)">Overview</a></li>
+                <li><a onclick="clickFeatures(2)">Key Features</a></li>
+                <li><a onclick="clickFeatures(3)">Initial Prototype and Development</a></li>
+                <li><a onclick="clickFeatures(4)">Future Plans</a></li>
+              </ul>
+            </div>
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+              <h1 class="mdl-mega-footer--heading">Team</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a href="#" onclick="clickTeams('anekin')">David Rosales</a></li>
+                <li><a href="#" onclick="clickTeams('erosales')">Everardo Rosales</a></li>
+                <li><a href="#" onclick="clickTeams('jsloane')">Joshua Sloane</a></li>
+                <li><a href="#" onclick="clickTeams('pozhu')">Joanna Zhu</a></li>
+                <li><a href="#" onclick="clickTeams('tneedham')">Thomas Needham</a></li>
+                <!-- <li><a href="#" onclick="clickTeams('mbhat')">Meghana Bhat</a></li> -->
+              </ul>
+            </div>
+          </div>
+        </footer>
+      </main>
+    </div>
+    <script src="js/material.min.js"></script>
+  </body>
+</html>
