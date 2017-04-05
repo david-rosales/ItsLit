@@ -158,142 +158,126 @@
 
               <h5 id="features1">Overview</h5>
               <p>
-                Virtual reality systems are gradually becoming more accessible.
-                 With the Oculus Rift, you can now visually immerse yourself in
-                  these virtual worlds and with the Leap Motion, you can even
-                  interact with these environments through gestures.
-                  Unfortunately, feedback systems are still miles behind.
+                Computer vision systems are becoming more accesible and prolific
+                in everyday computing. It is being used and integrated with
+                autonomous vehicles, facial recognition, augmented reality, and
+                gesture control.
               </p>
 
               <p>
-                We designed and built the Force Feel'd to fill in this gap
-                created by the disparity between senses. The glove interfaces
-                with both the Oculus Rift and the Leap Motion to bring simple,
-                unidirectional feedback to these VR interfaces, bridging mind
-                and hand.
+                One of the principle goals of this project was to find more novel
+                use cases for computer vision systems. As more hands on engineers,
+                we wanted to develop a system that
+                could be applied in a shop / workbench setting. A problem that
+                we quickly noticed while trying to brainstorm was that we kept
+                having to move lights around while we making simple models and
+                diagrams. With that the idea was born: a autonomous light tracking
+                system.
               </p>
 
-              <h5 id="features2">Key Features</h5>
-              Force Feel'd was developed with the pitfalls of typical haptics
-              systems in mind, to build a better and more robust platform.
+              <h5 id="features2">Key Design Goals and Features</h5>
+              <p>
+              LUX was developed with a few key tenants in mind to build out
+              a robust platform:
+              </p>
               <ul>
-                <li>Controls resistivity of motion, not direct manipulation of
-                  your hand.</li>
-                <li>Interfaces with preexisting Unity projects to make it easy
-                  to integrate into projects.</li>
-                <li>Makes use of simple Serial and Bluetooth APIs so that it can
-                  be controlled and manipulated regardless of language or
-                  project environments.</li>
+                <li>Make the platform easy to expand and capable of adding more lights and cameras.</li>
+                <li>Trackers should be passive to avoid added complexity.</li>
+                <li>Multi-trackers and multi-camera setups should be supported to allow for collaboration.</li>
+                <li>Make shifting of tracking objects as effortless of possible.</li>
               </ul>
 
               <h5 id="features3">Initial Prototype and Development</h5>
               <p>
-                We created the initial prototype at <strong>Phase I</strong> of
-                <a href="http://makemit.org">MakeMIT</a>, a hardware hackathon
-                sponsored by MIT. When going about the design of the glove, we
-                aimed for creating an experience that would provide a great deal
-                of authenticity when interacting with objects in the virtual space
-                while still being safe to use.
+                We created the initial prototype at <a href="http://makemit.org">MakeMIT 2017</a>,
+                a hardware hackathon sponsored by MIT. When going about the design of
+                system, we wanted to figure out a way to simplify the tracking aspects
+                to make it as performant as possible. This way we would be able to
+                port over the system to simplier and lighter platforms such as
+                Raspberry Pi's to keep over costs low.
               </p>
               <p>
-                With these design principals in mind, we came up with one of the
-                key features of the product: the glove does not control motion,
-                but instead <strong>resist</strong> motion. The worse that our
-                actuated components can do is prevent the user's finger from being able
-                to push down more than it already has.
+                We did some initial experimenting with IR tracking systems but
+                found that using active trackers with IR LEDs would add too much
+                complexity. So instead we decided to use a combination of
+                retro-reflective material and simply look for the brightest spot
+                that the camera can see.
               </p>
               <p class="center-text">
-                <img class="feature-image" src="static/v1-cad-mockup.jpg"/>
-                CAD mockup for our laser cut parts for the initial prototypes.
+                <img class="feature-image" src="static/main-2.jpg"/>
+                Picture of our mostly finished prototype taken during MakeMIT 2017.
               </p>
               <p>
-                We did this by creating finger modules that are comprised of 3
-                parts: the arm, the spool, and the break. The arm provides an
-                just enough elastic force to keep the spool tight, but not enough
-                to prevent the user from being able to actually use thier hand
-                under normal conditions. The spool holds most of the line that
-                is then connected to the finger. It also provides the contact
-                surface for the break to work properly. The breaks simply surround
-                spool and apply a range of friction forces to the spool to give
-                the allusion of touching objects with different viscosities.
+                We were able to do this for a few key reasons. For one, since we
+                were trying to cast a spotlight on the tracker in question we knew
+                that it would, <strong>in theory</strong>, be well lit and bright.
+                Second, if we were able to put the camera right at the light source
+                and that these would always be moving in sync. Due to the retro-reflective material reflecting the majority of
+                the light that is cast on it back to its source, we could simply look
+                for the brightest spot on the screen and track it.
               </p>
               <p class="center-text">
-                <img class="feature-image" src="static/v1-image.jpg"/>
-                Picture of our assembled prototype from MakeMIT Phase I.
+                <img class="feature-image" src="static/demo-ec1.jpg"/>
+                Picture of our assembled prototype from MakeMIT 2017.
               </p>
               <p>
-                In terms of electrical components, we used an simple
-                Arduino communicating with a computer via serial, using signals
-                from the computer to manipulate two servo motors.  For safety we
-                required a constant "Watchdog" signal, which if not received
-                would release all brakes in the glove. This way if there was a
-                software error or crash the user would not be stuck. Both power
-                and communication was sent through the USB tether.
+                In terms of components, we used a Nvidia Jetson TX1 for
+                the principle computer vision. This communicated with an Arduino
+                through serial which controled the servos attached to the light
+                and camera. For a camera, we used a standard off-the-shelve
+                webcam. The Nvidia Jetson in the end was a bit overkill for our
+                demo.
               </p>
               <p>
-                On the software demo side, we made heavy use of Unity and example
-                projects that resided within the Leap Motion and Oculus SDK's.
-                Because Unity scripts can be written in C#, we simply used the
-                default serial library in C# to communicate with the glove
-                through a USB host. This script has public interfaces to send
-                different signals to the glove from within a scene. Since we
-                wanted to add varying levels of resistance collisions of
-                different types, we created additional scripts that would
-                interface with our glove to dictate the degree of resistance
-                that was desired. However this meant that any collidable object
-                that we wanted to be able to feel with the glove would need to
-                use implement this script and add its resistance factor, this
-                script would then be in charge of calling a method on our main
-                script that would. In regards to the Watch Dog signal that was
-                described earlier, our main script that was in charge of handling
-                the constant checking in to ensure that the device and evniroment
-                is all properly configured.
+                On the software demo side, we used OpenCV for general computer
+                vision and tracking, CSerial for serial communication. We spent
+                a large portion of our time wrestling with C++ and the different
+                libraries in question to make sure everything would work together.
+                The software itself makes a few assumptions that dramatically cut
+                down on computation costs. The first of these was that we were
+                only concerned with the brightness of the images that we were
+                receiving. Second, we were only concerned with the brightest sections
+                of the image. This allowed us to filter out the bottom 90% bightest
+                parts of the image, dramatically reducing noise. The results of this
+                were on the platform that we were using, the Jetson TX1, we were
+                fully utilizing the 30fps that we were receiving from the webcam.
+                Moreover, our demo streamed multiple version of the images that
+                we were processing in realtime. In a production version of LUX,
+                this would be removed to further improve performance. Additionally
+                we added a weight or stickiness factor to the tracked objects.
+                This allowed us to reduce jitter as well as easily support multiple
+                trackers.
+              </p>
+              <p class="center-text">
+                <img class="feature-image" src="static/main-3.jpeg"/>
+                Picture of our assembled prototype from MakeMIT 2017.
+              </p>
+              <p>
+                Multiple tracker support from a user experience amounts to simply
+                moving the desired tracker close to the light first and then pulling
+                away. This would cause the tracker to blow up and be the brightest
+                tracking point, making the system <strong>lock on</strong> to the tracker and continue
+                to follow in the presence of other trackers in view. When you want
+                to switch which tracker is being tracked, you can simply move the
+                tracker close to the camera again to <strong>steal</strong> the light's focus.
+              </p>
 
-              </p>
-              <h5 id="features4">Second Generation Improvements</h5>
+              <h5 id="features4">Future Plans</h5>
               <p>
-                While working on improvements for the second version of our product,
-                we had two goals in mind: make the platform easier incorporate
-                into other projects and make the glove wireless.
-              </p>
-              <p>
-                Since we made heavy use of Unity previously, we continued to
-                expand on what we had and greatly improved the assets that we
-                used to interface with the glove. This time around, we
-                reimplemented our scripts such that it would use the physics of
-                the objects that are being interacted with to dictate how much
-                resistance was to be provided. This didn't require additional
-                scripts that would need to be added to each object that would be
-                collided with, instead the hand asset would be able to detect
-                collisions and from there send the message to glove with how
-                much resistivity was needed for the collision.
-              </p>
-              <p class="center-text">
-                <img class="feature-image" src="static/v2-image-on.jpg"/>
-                Picture of the second prototype and Leap Motion Sensor.
+                The next logical steps for the project are to both scale up and down.
+                We plan on making multiple of the tracking units, and then attaching them
+                to the single base station. Based on rough performance estimates,
+                we believe that we would be able to power 6 of the tracking units
+                with a single Nvidia Jetson TX1 with minimal changes to our software stack.
+                In terms of scaling down, we also want to port this system over to
+                a Raspberry Pi and further optimize to see how small of platform
+                we would be able to use to power a single light.
               </p>
               <p>
-                To accomplish the second goal, we added a Bluetooth sensor and
-                battery pack along with using a smaller microcontroller to have
-                this package fit more easily on the forearm. This all required
-                us to move away from the straight serial implementation that we
-                had before to instead using Bluetooth to communicate to the
-                glove. This required that we start up a Bluetooth server and
-                have our demos connect to the glove to start transmission.
-                Furthermore, our new watchdog signal would be whether the glove
-                is connected to our demo or not.
-              </p>
-              <p>
-                In terms of the other hardware, the focus was to make the footprint
-                of the different compoenents smaller, thus making the whole glove
-                easier to wear. As such we created smaller, vertical brakes as
-                well using fabric for the base of the glove. We also shrunk the footprint
-                of the electical components by using a smaller arduino and a small
-                bluetooh receiver.
-              </p>
-              <p class="center-text">
-                <img class="feature-image" src="static/v2-maniquin.jpg"/>
-                Close-up photo of second generation prototype.
+                Once we have found the smallest computation platform we would be
+                able to use, we would want to try to make a portable light that
+                would also function as tracking light. This ideally would be small
+                enough for mechanics to use while working under a car.
               </p>
             </div>
           </section>
@@ -324,7 +308,10 @@
                 <h4>David Rosales <a href="https://github.com/david-rosales"><i class="material-icons" role="presentation">launch</i></a></h4>
                   Sophomore at MIT studying Computer Science.
                   <br><br>
-                  Worked heavily on the software side of LUX.
+                  Worked heavily on the software side of LUX. Wrote the majority
+                  of the tracking software that ran on the Jetson TX1. Also devised and
+                  implemented the weighted tracking functions as well as fine-tuned
+                  the various software parameters for polishing the demo.
               </div>
             </div>
           </section>
@@ -367,15 +354,13 @@
             <div class="mdl-card mdl-cell mdl-cell--8-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
               <div class="mdl-card__supporting-text">
                 <h4>Joanna Zhu <a href="https://www.linkedin.com/in/joannapozhu/"><i class="material-icons" role="presentation">launch</i></a></h4>
-                Junior at MIT studying Mechanical Engineering looking forward to
-                narrowing my focus to product design with a strong background
-                in robotics.
+                Joanna is a fourth year student in mechanical engineering.
+                She specializes in product design and has an interest in
+                thermodynamics, fluid flow and materials.
                 <br><br>
-                For the first prototype, was tasked with all of the CAD work and
-                processing for 3D printing and laser cutting. Also worked on bits
-                and pieces of the general design of the hardware. For the second
-                prototype, did all of the ergonomic work and design, as well as
-                the design for the finger mounts and arm plates.
+                For LUX, she made the CAD models that we used to laser cut
+                and 3D print for fittings. Worked closely with Thomas to build the
+                physical/mechanical side of the demo as well as the individual trackers.
               </div>
             </div>
             <header class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
@@ -387,17 +372,18 @@
             <div class="mdl-card mdl-cell mdl-cell--8-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
               <div class="mdl-card__supporting-text">
                 <h4>Thomas Needham <a href="http://tneedham.github.io/Portfolio"><i class="material-icons" role="presentation">launch</i></a></h4>
-                  Hands-on mechatronics Junior at MIT interested in working on
-                  the behind-the-scenes portions of new tech. Structures,
-                  controls, robotics, automation, and solving problems such that
-                  the user doesn't even notice.
-                  <br><br>
-                  For the first generation Force Feel'd, he designed both
-                  generations of our braking mechanism, finger supports and
-                  forearm mount, and ancillary mechanicals for both models.
-                  Additionally, manufacture and assembly of "hard" components
-                  (non-ergonomic) especially for the second generation Force
-                  Feel'd - with access to a full shop beyond just laser cutters and 3D printers.
+                Hands-on mechatronics Senior at MIT interested in working on the
+                behind-the-scenes portions of new tech. Structures, controls,
+                robotics, automation, and solving problems such that the user
+                doesn't even notice.
+                <br><br>
+                In building Lux, Thomas worked on the mechanical architecture
+                for the gantry and plastic frame. Each had a design to be built
+                that day, and a concept of how it could be produced en mass to
+                better work for the user. Throughout the day he pieced together
+                components, manufactured and assembled subsystems, and troubleshot
+                continuously. Additionally, he helped to define features of the device,
+                specify and source parts, and communicate the capabilities of Lux.
               </div>
             </div>
           </section>
